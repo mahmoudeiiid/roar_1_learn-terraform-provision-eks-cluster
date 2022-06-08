@@ -4,9 +4,8 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.20"
   subnets         = module.vpc.private_subnets
-
+  tags = merge(var.additional_tags,{},)
   vpc_id = module.vpc.vpc_id
-
   workers_group_defaults = {
     root_volume_type = "gp2"
   }
